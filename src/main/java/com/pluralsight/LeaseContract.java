@@ -22,6 +22,19 @@ public class LeaseContract extends Contract{
 
     @Override
     public double getTotalPrice() {
+        double rate;
+        int term;
+        double totalPrice;
+        if(vehicle.getPrice() >= 10000) {
+            rate = vehicle.getPrice() * 0.0425;
+            term = 48;
+            totalPrice = vehicle.getPrice() + rate;
+
+        }else{
+            rate = vehicle.getPrice() * 0.0525;
+            term = 24;
+            totalPrice = vehicle.getPrice() + rate;
+        }
         return super.getTotalPrice();
     }
 

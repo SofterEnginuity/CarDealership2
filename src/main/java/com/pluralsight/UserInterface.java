@@ -3,10 +3,11 @@ package com.pluralsight;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserInterface {
+public class UserInterface{
 
     private Scanner scanner = new Scanner(System.in);
     private Dealership dealership;
+    private SalesContract contract;
 
     public void display() {
         init();
@@ -89,6 +90,7 @@ public class UserInterface {
     private void init() {
         DealershipFileManager fileManager = new DealershipFileManager();
         this.dealership = fileManager.getDealership();
+
     }
     public void displayVehicles(List<Vehicle> vehicles) {
         if (vehicles.isEmpty()) {
@@ -222,10 +224,35 @@ public class UserInterface {
             System.out.println("Vehicle with VIN " + vinToRemove + " not found.");
         }
     }
-    public void processGetSalesContract(){
-        System.out.println("Please enter");
+
+
+
+
+
+    private void getSalesContract() {
 
     }
+    public void processGetSalesContract(){
+        Vehicle testVehicle = new Vehicle(0,0,"", "", "", "", 0, 0);
+        contract = new SalesContract(testVehicle, "", "angel", "angel@gmail.com", false);
+        contract.getSalesContract();
+    }
+
+//        Scanner scanner = new Scanner(System.in);
+
+//        System.out.println("Please enter the name of the name of the customer");
+//        String name = scanner.nextLine();
+//        setName(name);
+//        System.out.println("Please enter the email address of the customer");
+//        String email = scanner.nextLine();
+//        System.out.println("Please enter the phone number of the customer");
+//        String phoneNumber = scanner.nextLine();
+//
+//        System.out.println(getName());
+
+
+
+
    public void processGetLeaseContract(){
        System.out.println("works");
    }

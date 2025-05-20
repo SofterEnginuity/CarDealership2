@@ -3,7 +3,7 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dealership extends Contract {
+public class Dealership {
 
     private String name;
     private String address;
@@ -11,13 +11,13 @@ public class Dealership extends Contract {
     private ArrayList<Vehicle> inventory;
 
 
-    public Dealership(String date, String name, String email, boolean vehicleSold, String name1, String address, String phone, ArrayList<Vehicle> inventory) {
-        super(date, name, email, vehicleSold);
-        this.name = name1;
+    public Dealership(String name, String address, String phone) {
+        this.name = name;
         this.address = address;
         this.phone = phone;
-        this.inventory = inventory;
+        this.inventory = new ArrayList<>();
     }
+
 
     public String getName() {
         return name;

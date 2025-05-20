@@ -10,18 +10,19 @@ public class DealershipFileManager {
 
         try (BufferedReader bufRead = new BufferedReader(new FileReader(fileName))) {
             String line;
-//            bufRead.readLine();
+
             while ((line = bufRead.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
 
                 String[] parts = line.split("\\|");
 
-                if (parts.length == 3) {
+                if (parts.length == 3 && dealership == null) {
                     String name = parts[0].trim();
                     String address = parts[1].trim();
                     String phoneNumber = parts[2].trim();
                     dealership = new Dealership(name, address, phoneNumber);
-                } else {
+                }
+                else {
                     int vin = Integer.parseInt(parts[0].trim());
                     int year = Integer.parseInt(parts[1].trim());
                     String make = parts[2].trim();
