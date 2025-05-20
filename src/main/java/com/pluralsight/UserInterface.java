@@ -1,5 +1,9 @@
 package com.pluralsight;
 
+import org.w3c.dom.ls.LSOutput;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -233,31 +237,49 @@ public class UserInterface{
 
     }
     public void processGetSalesContract(){
-        Vehicle testVehicle = new Vehicle(0,0,"", "", "", "", 0, 0);
-        contract = new SalesContract(testVehicle, "", "angel", "angel@gmail.com", false);
-        contract.getSalesContract();
+        System.out.println("Please enter a vin to search");
+        int vin = scanner.nextInt();
+        List<Vehicle> vehicleByVin = dealership.getVehiclesByVin(vin);
+        displayVehicles(dealership.getVehiclesByVin(vin));
+//        contract = new SalesContract(testVehicle, "", "angel", "angel@gmail.com", false);
+//        contract.getSalesContract();
+
+        for (Vehicle vehicle : vehicleByVin) {
+            if(vin == vehicle.getVin()){
+                vehicleByVin.add(vehicle);
+            }else{
+                System.out.println("There is no vehicle with that vin number");
+            }
+        }
+
+
+        System.out.println("Please enter the date of purchase");
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String date = now.format(formatter);
+//        setDate(date);
+        System.out.println("Please enter the name of the name of the customer");
+        String name = scanner.nextLine();
+//        setName(name);
+        System.out.println("Please enter the email address of the customer");
+        String email = scanner.nextLine();
+//        setEmail(email);
+        System.out.println("Please enter the phone number of the customer");
+        String phoneNumber = scanner.nextLine();
+//        setPhone(phoneNumber);
+
     }
 
-//        Scanner scanner = new Scanner(System.in);
-
-//        System.out.println("Please enter the name of the name of the customer");
-//        String name = scanner.nextLine();
-//        setName(name);
-//        System.out.println("Please enter the email address of the customer");
-//        String email = scanner.nextLine();
-//        System.out.println("Please enter the phone number of the customer");
-//        String phoneNumber = scanner.nextLine();
-//
-//        System.out.println(getName());
 
 
 
 
-   public void processGetLeaseContract(){
-       System.out.println("works");
-   }
+
+
+    public void processGetLeaseContract(){
+        System.out.println("works");
+    }
 
 
 
 }
-
