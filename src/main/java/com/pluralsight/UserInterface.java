@@ -1,7 +1,6 @@
 package com.pluralsight;
 
-import org.w3c.dom.ls.LSOutput;
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -237,37 +236,57 @@ public class UserInterface{
 
     }
     public void processGetSalesContract(){
-        System.out.println("Please enter a vin to search");
+        System.out.println("Please enter a VIN to search:");
         int vin = scanner.nextInt();
-        List<Vehicle> vehicleByVin = dealership.getVehiclesByVin(vin);
-        displayVehicles(dealership.getVehiclesByVin(vin));
-//        contract = new SalesContract(testVehicle, "", "angel", "angel@gmail.com", false);
-//        contract.getSalesContract();
+        scanner.nextLine();
 
-        for (Vehicle vehicle : vehicleByVin) {
-            if(vin == vehicle.getVin()){
-                vehicleByVin.add(vehicle);
-            }else{
-                System.out.println("There is no vehicle with that vin number");
+        Vehicle selectedVehicle = null;
+        for (Vehicle v : dealership.getAllVehicles()) {
+            if (v.getVin() == vin) {
+                selectedVehicle = v;
+                break;
             }
         }
 
+        if (selectedVehicle == null) {
+            System.out.println("No vehicle found with VIN: " + vin);
+            return;
+        }
 
-        System.out.println("Please enter the date of purchase");
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String date = now.format(formatter);
-//        setDate(date);
+        System.out.println("Vehicle selected: " + selectedVehicle);
+
+
+        System.out.print("Please enter the date of purchase: ");
+        String date = scanner.nextLine();
+        String formattedDate = date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6);
+        System.out.println(formattedDate);
+
+
+
         System.out.println("Please enter the name of the name of the customer");
         String name = scanner.nextLine();
-//        setName(name);
+        System.out.println(name);
+
         System.out.println("Please enter the email address of the customer");
         String email = scanner.nextLine();
-//        setEmail(email);
-        System.out.println("Please enter the phone number of the customer");
-        String phoneNumber = scanner.nextLine();
-//        setPhone(phoneNumber);
+        System.out.println(email);
 
+        System.out.println("Does the customer want to finance? Y - Yes, N - No");
+        String financeOption = scanner.nextLine();
+        if (financeOption.equalsIgnoreCase("Y")) {
+            System.out.println("Wants finance");
+        } else {
+            System.out.println("Does not want finance");
+        }
+
+        System.out.println(financeOption);
+
+        SalesContract contract = new SalesContract(date, name, email, selectedVehicle, vehicleSold, financeOption);
+
+
+
+        System.out.println("Grand Total" + contract.getTotalPrice());
+        System.out.println("Monthly Payment" + contract.getMonthlyPayment());
     }
 
 
