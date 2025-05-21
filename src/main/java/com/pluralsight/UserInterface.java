@@ -273,15 +273,19 @@ public class UserInterface{
 
         System.out.println("Does the customer want to finance? Y - Yes, N - No");
         String financeOption = scanner.nextLine();
+        boolean wantsFinance;
         if (financeOption.equalsIgnoreCase("Y")) {
             System.out.println("Wants finance");
+          wantsFinance = financeOption.equalsIgnoreCase("Y");
         } else {
             System.out.println("Does not want finance");
+           wantsFinance = financeOption.equalsIgnoreCase("N");
         }
 
         System.out.println(financeOption);
 
-        SalesContract contract = new SalesContract(date, name, email, selectedVehicle, vehicleSold, financeOption);
+        SalesContract contract = new SalesContract(date, name, email, selectedVehicle, 0,0,0, wantsFinance);
+
 
 
 
