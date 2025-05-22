@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -274,7 +276,15 @@ public class UserInterface{
         String financeOption = scanner.nextLine();
         boolean wantsFinance = financeOption.equalsIgnoreCase("Y");
 
-//          ContractFileManager.saveContract(contract);
+
+
+
+
+
+
+
+
+
 
 //        System.out.println(financeOption);
 //        System.out.println(contract.getTotalPrice());
@@ -283,7 +293,7 @@ public class UserInterface{
 
 
     public void processGetLeaseContract(){
-        System.out.println("works");
+
     }
 
 

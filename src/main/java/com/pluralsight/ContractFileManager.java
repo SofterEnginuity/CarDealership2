@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,21 +13,40 @@ public class ContractFileManager {
     public void saveContract(Contract contract) {
 
         try {
-            FileWriter fw = new FileWriter(FILE_NAME,true);
-            PrintWriter pw = new PrintWriter(new PrintWriter(FILE_NAME));
-            if(contract instanceof SalesContract){
-                SalesContract salesContract = new SalesContract(contract.getDate(),contract.getName(), contract.getEmail(), contract.getVehicleSold(), ((SalesContract) contract).getSalesTaxAmount(), ((SalesContract) contract).getRecordingFee(), ((SalesContract) contract).getProcessingFee(), ((SalesContract) contract).isFinanceOption());
+            FileWriter fw = new FileWriter(FILE_NAME, true);
+            PrintWriter pw = new PrintWriter(fw);
 
-            }else if(contract instanceof LeaseContract){
-            LeaseContract leaseContract = new LeaseContract(contract.getDate(),contract.getName(), contract.getEmail(), contract.getVehicleSold(), ((LeaseContract) contract).getLeaseFee(),((LeaseContract) contract).getExpectedEndingValue());
-            }else{
+            if (contract instanceof SalesContract) {
+//                pw.println(
+//                        contract.getDate() + "|" +
+//                                contract.getName() + "|" +
+//                                contract.getEmail() + "|" +
+//                                contract.getVehicleSold().getVin() + "|" +
+//                                ((SalesContract) contract).getSalesTaxAmount() + "|" +
+//                                ((SalesContract) contract).getRecordingFee() + "|" +
+//                                ((SalesContract) contract).getProcessingFee() + "|" +
+//                                ((SalesContract) contract).isFinanceOption()
+//                );
+            } else if (contract instanceof LeaseContract) {
+//                pw.println(
+//                        contract.getDate() + "|" +
+//                                contract.getName() + "|" +
+//                                contract.getEmail() + "|" +
+//                                contract.getVehicleSold().getVin() + "|" +
+//                                ((LeaseContract) contract).getLeaseFee() + "|" +
+//                                ((LeaseContract) contract).getExpectedEndingValue();
+//
+            } else {
                 System.out.println("Please make a valid selection");
             }
-            saveContract(contract);
+
+            pw.close();
+            System.out.println("File written? " + new File("contracts.csv").exists());
 
         } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }System.out.println("Error reading file: ");
+            System.out.println("Error writing file: " + ex.getMessage());
+        }
+
 
     }
 
