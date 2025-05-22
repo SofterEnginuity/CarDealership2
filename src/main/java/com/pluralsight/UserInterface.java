@@ -10,7 +10,6 @@ public class UserInterface{
 
     private Scanner scanner = new Scanner(System.in);
     private Dealership dealership;
-    private SalesContract contract;
 
     public void display() {
         init();
@@ -232,10 +231,8 @@ public class UserInterface{
 
 
 
-    private void getSalesContract() {
 
-    }
-    public void processGetSalesContract(){
+    private void processGetSalesContract(){
         System.out.println("Please enter a VIN to search:");
         int vin = scanner.nextInt();
         scanner.nextLine();
@@ -267,36 +264,22 @@ public class UserInterface{
         String name = scanner.nextLine();
         System.out.println(name);
 
+
         System.out.println("Please enter the email address of the customer");
         String email = scanner.nextLine();
         System.out.println(email);
 
+
         System.out.println("Does the customer want to finance? Y - Yes, N - No");
         String financeOption = scanner.nextLine();
-        boolean wantsFinance;
-        if (financeOption.equalsIgnoreCase("Y")) {
-            System.out.println("Wants finance");
-          wantsFinance = financeOption.equalsIgnoreCase("Y");
-        } else {
-            System.out.println("Does not want finance");
-           wantsFinance = financeOption.equalsIgnoreCase("N");
-        }
+        boolean wantsFinance = financeOption.equalsIgnoreCase("Y");
 
-        System.out.println(financeOption);
+//          ContractFileManager.saveContract(contract);
 
-        SalesContract contract = new SalesContract(date, name, email, selectedVehicle, 0,0,0, wantsFinance);
-
-
-
-
-        System.out.println("Grand Total" + contract.getTotalPrice());
-        System.out.println("Monthly Payment" + contract.getMonthlyPayment());
+//        System.out.println(financeOption);
+//        System.out.println(contract.getTotalPrice());
+//        System.out.println("Monthly Payment" + contract.getMonthlyPayment());
     }
-
-
-
-
-
 
 
     public void processGetLeaseContract(){

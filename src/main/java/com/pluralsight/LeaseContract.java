@@ -2,23 +2,38 @@ package com.pluralsight;
 
 public class LeaseContract extends Contract{
 
-    private double salesTaxAmount;
-    private int processingFee;
-    private boolean wantsFinance;
+//    private double salesTaxAmount;
+//    private int processingFee;
+//    private boolean wantsFinance;
     private double expectedEndingValue;  //50% of original price
     private double leaseFee;  //7% of the original price
     private double monthlyPayment;  //All leases are financed at 4.0% for 36 months
 
 
-    public LeaseContract(String date, String name, String email, Vehicle vehicleSold, double leaseFee, double expectedValue, boolean wantsFinance, int processingFee, int recordingFee) {
+    public LeaseContract(String date, String name, String email, Vehicle vehicleSold, double leaseFee, double expectedValue) {
         super(date, name, email, vehicleSold);
         this.leaseFee = leaseFee;
         this.expectedEndingValue = expectedValue;
-        this.wantsFinance = wantsFinance;
-        this.processingFee = processingFee;
+//        this.wantsFinance = wantsFinance;
+//        this.processingFee = processingFee;
 
     }
 
+    public double getExpectedEndingValue() {
+        return expectedEndingValue;
+    }
+
+    public void setExpectedEndingValue(double expectedEndingValue) {
+        this.expectedEndingValue = expectedEndingValue;
+    }
+
+    public double getLeaseFee() {
+        return leaseFee;
+    }
+
+    public void setLeaseFee(double leaseFee) {
+        this.leaseFee = leaseFee;
+    }
 
     @Override
     public double getTotalPrice() {
